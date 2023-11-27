@@ -3,12 +3,12 @@ version: '3'
 services:
   
   database: 
-    build: .\C:\Users\feder\Desktop\MicroservicesProjectITS\ClientiDB
+    build: .\C:\users\feder\desktop\microservicesprojectits\clientidb
     networks:
       - connessioneclienti
 
   api: 
-    image: .\C:\Users\feder\Desktop\MicroservicesProjectITS\ClientiAPI
+    image: .\C:\users\feder\desktop\microservicesprojectits\clientiapi
     ports:
       - "8080:80"
     networks:
