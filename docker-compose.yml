@@ -1,20 +1,22 @@
 version: '3'
 
 services:
-  
-  database: 
-    build: .\C:\users\feder\desktop\microservicesprojectits\clientidb
+  database:
+    build: .\microservicesprojectits\UserDB
+    environment:
+      POSTGRES_DB: UserDB
+      POSTGRES_USER: fede
+      POSTGRES_PASSWORD: mypassword
     networks:
-      - connessioneclienti
+      - mynetwork
 
-  api: 
-    image: .\C:\users\feder\desktop\microservicesprojectits\clientiapi
+  api:
+    build: .\microservicesprojectits\clientiapi
     ports:
       - "8080:80"
     networks:
-      - connessioneclienti
+      - mynetwork
 
 networks:
-  connessioneclienti: 
+  mynetwork:
     driver: bridge
-
