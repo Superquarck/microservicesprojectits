@@ -4,11 +4,21 @@ services:
   
   database: 
     build: .\C:\Users\feder\Desktop\MicroservicesProjectITS\ClientiDB
-  enviromet:
-    POSTGRES_DB: UserDB
-    POSTGRES_USER: fede
-    POSTGRES_PASSWORD: mypassword
+    enviromet:
+      POSTGRES_DB: UserDB
+      POSTGRES_USER: fede
+      POSTGRES_PASSWORD: mypassword
+    networks:
+      - connessioneclienti
+
+  api: 
+    image: .\C:\Users\feder\Desktop\MicroservicesProjectITS\ClientiAPI
+    ports:
+      - "8080:80"
+    networks:
+      - connessioneclienti
 
 networks:
-  bridge: 
+  connessioneclienti: 
+    driver: bridge
 
