@@ -4,9 +4,11 @@ services:
   database:
     build: .\ClientiDB
     environment:
-      POSTGRES_DB: ClientiDB
+      POSTGRES_DB: UserDB
       POSTGRES_USER: fede
       POSTGRES_PASSWORD: mypassword
+    ports:
+      - "5432"
     networks:
       - mynetwork
 
