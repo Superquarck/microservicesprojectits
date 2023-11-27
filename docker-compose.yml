@@ -2,7 +2,7 @@ version: '3'
 
 services:
   database:
-    build: .\microservicesprojectits\UserDB
+    build: .\ClientiDB
     environment:
       POSTGRES_DB: UserDB
       POSTGRES_USER: fede
@@ -11,7 +11,7 @@ services:
       - mynetwork
 
   api:
-    build: .\microservicesprojectits\clientiapi
+    build: .\ClientiAPI
     ports:
       - "8080:80"
     networks:
