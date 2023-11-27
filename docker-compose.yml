@@ -4,10 +4,6 @@ services:
   
   database: 
     build: .\C:\Users\feder\Desktop\MicroservicesProjectITS\ClientiDB
-    enviromet:
-      POSTGRES_DB: UserDB
-      POSTGRES_USER: fede
-      POSTGRES_PASSWORD: mypassword
     networks:
       - connessioneclienti
 
