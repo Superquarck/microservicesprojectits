@@ -8,7 +8,7 @@ db_params = {
     'dbname': 'UserDB',
     'user': 'fede',
     'password': 'mypassword',
-    'host': 'bold_dhawan',
+    'host': 'ContainerClienti',
     'port': '5432',
 }
 
@@ -38,4 +38,4 @@ def get_clients():
         return jsonify({'error': str(e)})
 
 if __name__ == '__main__':
-    app.run(debug=True, port='5432')
+    app.run(debug=True)
