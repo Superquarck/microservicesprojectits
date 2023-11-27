@@ -1,8 +1,7 @@
 from flask import Flask, jsonify
 import psycopg2.pool
 from flask_cors import CORS
-from werkzeug.urls import quote
-
+from werkzeug.urls import url_parse  # Use url_parse instead of url_quote
 
 app = Flask(__name__)
 CORS(app)
