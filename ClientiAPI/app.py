@@ -13,7 +13,7 @@ connection_pool = psycopg2.pool.SimpleConnectionPool(
     user='fede',
     password='mypassword',
     host='0.0.0.0',
-    port='6000'
+    port='5000'
 )
 
 # API endpoint to retrieve data from the 'Clienti' table
