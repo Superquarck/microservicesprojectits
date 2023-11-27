@@ -1,5 +1,5 @@
 -- Connect to the existing database (replace "UserDB" with your actual database name)
-\c "UserDB";
+\c "ClientiDB";
 
 -- Create the "Clienti" table
 CREATE TABLE IF NOT EXISTS Clienti (

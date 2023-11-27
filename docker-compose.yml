@@ -4,7 +4,7 @@ services:
   database:
     build: .\ClientiDB
     environment:
-      POSTGRES_DB: UserDB
+      POSTGRES_DB: ClientiDB
       POSTGRES_USER: fede
       POSTGRES_PASSWORD: mypassword
     networks:
