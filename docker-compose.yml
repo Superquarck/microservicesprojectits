@@ -16,8 +16,10 @@ services:
   api:
     build: .\ClientiAPI
     ports:
-      - "5040:5000"
+      - "5000:80"
     container_name: "apiclienti"
+    depends_on:
+      - postgres
     networks:
       - mynetwork
 
