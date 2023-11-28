@@ -13,7 +13,7 @@ connection_pool = psycopg2.pool.SimpleConnectionPool(
     user='fede',
     password='mypassword',
     host='clientidata',
-    port='5432'
+    port='5040'
 )
 
 # API endpoint to retrieve data from the 'Clienti' table
@@ -43,4 +43,4 @@ def get_clients():
         connection_pool.putconn(connection)
 
 if __name__ == '__main__':
-    app.run(debug=True, host=("clientidata"), port=5432)
+    app.run(debug=True, host=("clientidata"), port=5000)
