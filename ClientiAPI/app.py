@@ -13,7 +13,7 @@ connection_pool = psycopg2.pool.SimpleConnectionPool(
     dbname='UserDB',
     user='fede',
     password='mypassword',
-    host='0.0.0.0',
+    host='clientidata',
     port='5432'
 )
 
