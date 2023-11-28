@@ -12,7 +12,7 @@ connection_pool = psycopg2.pool.SimpleConnectionPool(
     dbname='UserDB',
     user='fede',
     password='mypassword',
-    host='0.0.0.0',
+    host='clientidata',
     port='5432'
 )
 
@@ -43,4 +43,4 @@ def get_clients():
         connection_pool.putconn(connection)
 
 if __name__ == '__main__':
-    app.run(debug=True, host=("0.0.0.0"), port=5432)
+    app.run(debug=True, host=("clientidata"), port=5432)

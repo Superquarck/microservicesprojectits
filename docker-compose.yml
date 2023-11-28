@@ -10,19 +10,17 @@ services:
     ports:
       - "5432:5432"
     networks:
-      mynetwork:
-        ipv4_address: 172.18.0.2
+      mynetwork
+    container_name: clientidata
 
   api:
     build: .\ClientiAPI
     ports:
       - "5040:5040"
     networks:
-      mynetwork:
-        ipv4_address: 172.18.0.3
+      mynetwork
+    container_name: apiclienti
 
 networks:
   mynetwork:
-    driver: default
-    config:
-        - subnet: 172.18.0.0/16
+    driver: bridge
