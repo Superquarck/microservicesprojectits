@@ -5,4 +5,4 @@ ENV POSTGRES_PASSWORD=mypassword
 
 COPY init.sql /docker-entrypoint-initdb.d/
 
-EXPOSE 6000
+EXPOSE 5040
