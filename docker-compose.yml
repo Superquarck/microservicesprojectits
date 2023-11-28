@@ -10,16 +10,18 @@ services:
     ports:
       - "5432:5432"
     networks:
-      mynetwork
-    container_name: clientidata
+      - mynetwork
+    container_name: 
+      - clientidata
 
   api:
     build: .\ClientiAPI
     ports:
       - "5040:5040"
+    container_name: 
+      - apiclienti
     networks:
-      mynetwork
-    container_name: apiclienti
+      - mynetwork
 
 networks:
   mynetwork:
