@@ -12,6 +12,8 @@ services:
     networks:
       - mynetwork
     container_name: "clientidata"
+    volumes:
+      - ./data:/var/lib/postgresql/data
 
   api:
     build: .\ClientiAPI
