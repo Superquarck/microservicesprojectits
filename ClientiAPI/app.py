@@ -1,18 +1,47 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, jsonify
+import psycopg2.pool
+from flask_cors import CORS
 from werkzeug.urls import quote
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://myuser:mypassword@postgres:5432/mydatabase'
-db = SQLAlchemy(app)
+CORS(app)
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
+# Create a connection pool
+connection_pool = psycopg2.pool.SimpleConnectionPool(
+    minconn=1,
+    maxconn=10,
+    dbname='UserDB',
+    user='fede',
+    password='mypassword',
+    host='0.0.0.0',
+    port='5432'
+)
 
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
+# API endpoint to retrieve data from the 'Clienti' table
+@app.route('/api/clients', methods=['GET'])
+def get_clients():
+    connection = connection_pool.getconn()
+    try:
+        cursor = connection.cursor()
+
+        # Select data from the 'Clienti' table
+        select_query = "SELECT * FROM Clienti;"
+        cursor.execute(select_query)
+        data = cursor.fetchall()
+
+        # Close the cursor (will return the connection to the pool) and commit changes
+        cursor.close()
+        connection.commit()
+
+        # Convert the data to JSON and return it
+        return jsonify({'clients': data})
+
+    except Exception as e:
+        return jsonify({'error': str(e)})
+
+    finally:
+        # Always return the connection to the pool
+        connection_pool.putconn(connection)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+    app.run(debug=True, host="0.0.0.0", port=5000)
