@@ -53,8 +53,6 @@ services:
       POSTGRES_DB: PrestitiDB
       POSTGRES_USER: fede
       POSTGRES_PASSWORD: mypassword
-    ports:
-      - "5432:5432"
     networks:
       - mynetwork
     container_name: "prestitidata"
