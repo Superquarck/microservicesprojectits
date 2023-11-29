@@ -21,7 +21,7 @@ connection_pool = psycopg2.pool.SimpleConnectionPool(
 
 # API endpoint to retrieve data from the 'Clienti' table
 @app.route('/clienti', methods=['GET'])
-async def get_clients():
+def get_clients():
     connection = connection_pool.getconn()
     try:
         cursor = connection.cursor()
@@ -36,7 +36,7 @@ async def get_clients():
         connection.commit()
 
         # Convert the data to JSON and return it
-        return jsonify({'clients': data})
+        return jsonify({'clienti': data})
 
     except Exception as e:
         return jsonify({'error': str(e)})
