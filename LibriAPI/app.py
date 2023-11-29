@@ -16,7 +16,7 @@ connection_pool = psycopg2.pool.SimpleConnectionPool(
     user='fede',
     password='mypassword',
     host='libridata',
-    port='5433'
+    port='5432'
 )
 
 # API endpoint to retrieve data from the 'Libri' table
