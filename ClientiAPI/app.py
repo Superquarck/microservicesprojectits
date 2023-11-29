@@ -2,6 +2,9 @@ from flask import Flask, jsonify, request
 import psycopg2.pool
 from flask_cors import CORS
 import time 
+import logging
+import json
+
 
 time.sleep(30)
 
@@ -18,6 +21,14 @@ connection_pool = psycopg2.pool.SimpleConnectionPool(
     host='clientidata',
     port='5432'
 )
+
+#configurazione iniziale del logging
+logging.basicConfig(level=logging.INFO,
+filename="Utenti.log",
+filemode="w",
+format="%(asctime)s - %(levelname)s - %(message)s")
+
+logging.info("Connessione al Database dei Clienti, riuscita con successo!")
 
 # API endpoint to retrieve data from the 'Clienti' table
 @app.route('/clienti', methods=['GET'])
@@ -139,3 +150,5 @@ def delete_clienti(clienti_id):
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port=5000)
+
+logging.warning("Run dell'applicazione Utenti")
