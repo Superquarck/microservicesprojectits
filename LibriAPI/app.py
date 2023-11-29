@@ -21,7 +21,7 @@ connection_pool = psycopg2.pool.SimpleConnectionPool(
 
 # API endpoint to retrieve data from the 'Libri' table
 @app.route('/libri', methods=['GET'])
-def get_clients():
+def get_books():
     connection = connection_pool.getconn()
     try:
         cursor = connection.cursor()
@@ -36,7 +36,7 @@ def get_clients():
         connection.commit()
 
         # Convert the data to JSON and return it
-        return jsonify({'clienti': data})
+        return jsonify({'libri': data})
 
     except Exception as e:
         return jsonify({'error': str(e)})
@@ -46,7 +46,7 @@ def get_clients():
         connection_pool.putconn(connection)
 
 @app.route('/libri', methods=['POST'])
-def create_client():
+def create_books():
     connection = connection_pool.getconn()
     try:
         cursor = connection.cursor()
@@ -61,14 +61,14 @@ def create_client():
         # Insert data into the 'Libri' table
         insert_query = "INSERT INTO Libri (ID, Titolo, Editore, Genere, Autore) VALUES (%s, %s, %s, %s, %s) RETURNING *;"
         cursor.execute(insert_query, (id, titolo, editore, genere, autore))
-        new_client = cursor.fetchone()
+        new_book = cursor.fetchone()
 
         # Commit changes
         connection.commit()
 
         # Close the cursor (will return the connection to the pool) and return the new client data
         cursor.close()
-        return jsonify({'clienti': new_client}), 201
+        return jsonify({'libri': new_book}), 201
 
     except Exception as e:
         return jsonify({'error': str(e)})
@@ -79,7 +79,7 @@ def create_client():
 
 # Update operation
 @app.route('/libri/<int:libri_id>', methods=['PUT'])
-def update_client(libri_id):
+def update_books(libri_id):
     connection = connection_pool.getconn()
     try:
         cursor = connection.cursor()
@@ -92,15 +92,15 @@ def update_client(libri_id):
 
         # Update data in the 'Libri' table
         update_query = "UPDATE Libri SET Titolo = %s, Editore = %s, Genere = %s, Autore = %s WHERE id = %s RETURNING *;"
-        cursor.execute(update_query, (titolo, editore, genere, autore, libri_id_id))
-        updated_client = cursor.fetchone()
+        cursor.execute(update_query, (titolo, editore, genere, autore, libri_id))
+        update_book = cursor.fetchone()
 
         # Commit changes
         connection.commit()
 
         # Close the cursor (will return the connection to the pool) and return the updated client data
         cursor.close()
-        return jsonify({'clienti': updated_client})
+        return jsonify({'clienti': update_book})
 
     except Exception as e:
         return jsonify({'error': str(e)})
@@ -111,7 +111,7 @@ def update_client(libri_id):
 
 # Delete operation
 @app.route('/clienti/<int:libri_id>', methods=['DELETE'])
-def delete_client(libri_id):
+def delete_books(libri_id):
     connection = connection_pool.getconn()
     try:
         cursor = connection.cursor()
@@ -119,14 +119,14 @@ def delete_client(libri_id):
         # Delete data from the 'Clienti' table
         delete_query = "DELETE FROM Clienti WHERE id = %s RETURNING *;"
         cursor.execute(delete_query, (libri_id,))
-        deleted_client = cursor.fetchone()
+        deleted_book = cursor.fetchone()
 
         # Commit changes
         connection.commit()
 
         # Close the cursor (will return the connection to the pool) and return the deleted client data
         cursor.close()
-        return jsonify({'clienti': deleted_client})
+        return jsonify({'clienti': deleted_book})
 
     except Exception as e:
         return jsonify({'error': str(e)})
