@@ -1,7 +1,10 @@
 from flask import Flask, jsonify
 import psycopg2.pool
 from flask_cors import CORS
-from werkzeug.urls import quote
+import time 
+
+time.sleep(30)
+
 
 app = Flask(__name__)
 CORS(app)
@@ -10,7 +13,7 @@ CORS(app)
 connection_pool = psycopg2.pool.SimpleConnectionPool(
     minconn=1,
     maxconn=10,
-    dbname='UserDB',
+    dbname='ClientiDB',
     user='fede',
     password='mypassword',
     host='clientidata',
@@ -42,6 +45,8 @@ def get_clients():
     finally:
         # Always return the connection to the pool
         connection_pool.putconn(connection)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port=5000)
