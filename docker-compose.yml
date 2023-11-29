@@ -31,10 +31,6 @@ services:
       POSTGRES_DB: LibriDB
       POSTGRES_USER: fede
       POSTGRES_PASSWORD: mypassword
-    expose:
-      - 5433
-    ports:
-      - 5433
     networks:
       - mynetwork
     container_name: "libridata"
@@ -48,6 +44,30 @@ services:
     container_name: "apilibri"
     depends_on: 
       - libridata
+    networks:
+      - mynetwork
+
+prestitidata:
+    build: .\PrestitiDB
+    environment:
+      POSTGRES_DB: PrestitiDB
+      POSTGRES_USER: fede
+      POSTGRES_PASSWORD: mypassword
+    ports:
+      - "5432:5432"
+    networks:
+      - mynetwork
+    container_name: "prestitidata"
+    volumes:
+      - ./data/PrestitiDB:/var/lib/postgresql/data
+
+apilibri:
+    build: .\PrestitiAPI
+    ports:
+      - "4998:4998"
+    container_name: "apiprestiti"
+    depends_on: 
+      - prestitidata
     networks:
       - mynetwork
 
