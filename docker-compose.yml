@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  database:
+  clientidata:
     build: .\ClientiDB
     environment:
       POSTGRES_DB: ClientiDB
@@ -15,11 +15,35 @@ services:
     volumes:
       - ./data:/var/lib/postgresql/data
 
-  api:
+  apiclienti:
     build: .\ClientiAPI
     ports:
       - "5000:5000"
     container_name: "apiclienti"
+    depends_on: 
+      - database
+    networks:
+      - mynetwork
+
+  libridata:
+    build: .\LibriDB
+    environment:
+      POSTGRES_DB: LibriDB
+      POSTGRES_USER: fede
+      POSTGRES_PASSWORD: mypassword
+    ports:
+      - "5432:5432"
+    networks:
+      - mynetwork
+    container_name: "libridata"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+
+  apilibri:
+    build: .\LibriAPI
+    ports:
+      - "4999:4999"
+    container_name: "apilibri"
     depends_on: 
       - database
     networks:
