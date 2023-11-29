@@ -15,7 +15,7 @@ connection_pool = psycopg2.pool.SimpleConnectionPool(
     dbname='LibriDB',
     user='fede',
     password='mypassword',
-    host='clientidata',
+    host='libridata',
     port='5432'
 )
 
