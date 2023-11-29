@@ -23,11 +23,11 @@ connection_pool = psycopg2.pool.SimpleConnectionPool(
 
 #configurazione iniziale del logging
 logging.basicConfig(level=logging.INFO,
-filename="Utenti.log",
+filename="Libri.log",
 filemode="w",
 format="%(asctime)s - %(levelname)s - %(message)s")
 
-logging.info("Connessione al Database dei Clienti, riuscita con successo!")
+logging.info("Connessione al Database dei Libri, riuscita con successo!")
 
 # API endpoint to retrieve data from the 'Libri' table
 @app.route('/libri', methods=['GET'])
