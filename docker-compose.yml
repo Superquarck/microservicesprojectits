@@ -21,7 +21,7 @@ services:
       - "5000:5000"
     container_name: "apiclienti"
     depends_on: 
-      - database
+      - clientidata
     networks:
       - mynetwork
 
@@ -45,7 +45,7 @@ services:
       - "4999:4999"
     container_name: "apilibri"
     depends_on: 
-      - database
+      - libridata
     networks:
       - mynetwork
 
