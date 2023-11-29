@@ -5,7 +5,6 @@ import time
 
 time.sleep(30)
 
-
 app = Flask(__name__)
 CORS(app)
 
@@ -21,8 +20,8 @@ connection_pool = psycopg2.pool.SimpleConnectionPool(
 )
 
 # API endpoint to retrieve data from the 'Clienti' table
-@app.route('/api/clients', methods=['GET'])
-def get_clients():
+@app.route('/clienti', methods=['GET'])
+async def get_clients():
     connection = connection_pool.getconn()
     try:
         cursor = connection.cursor()
