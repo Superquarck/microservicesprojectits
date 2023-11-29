@@ -47,7 +47,7 @@ services:
     networks:
       - mynetwork
 
-prestitidata:
+  prestitidata:
     build: .\PrestitiDB
     environment:
       POSTGRES_DB: PrestitiDB
@@ -61,7 +61,7 @@ prestitidata:
     volumes:
       - ./data/PrestitiDB:/var/lib/postgresql/data
 
-apilibri:
+  apiprestiti:
     build: .\PrestitiAPI
     ports:
       - "4998:4998"
