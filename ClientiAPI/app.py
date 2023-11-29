@@ -52,14 +52,15 @@ def create_client():
         cursor = connection.cursor()
 
         # Extract data from the request
+        id = request.json.get('ID')
         nome = request.json.get('Nome')
         cognome = request.json.get('Cognome')
         indirizzo = request.json.get('Indirizzo')
         citta = request.json.get('Citta')
 
         # Insert data into the 'Clienti' table
-        insert_query = "INSERT INTO Clienti (Nome, Cognome, Indirizzo, Citta) VALUES (%s, %s, %s, %s) RETURNING *;"
-        cursor.execute(insert_query, (nome, cognome, indirizzo, citta))
+        insert_query = "INSERT INTO Clienti (ID, Nome, Cognome, Indirizzo, Citta) VALUES (%s, %s, %s, %s, %s) RETURNING *;"
+        cursor.execute(insert_query, (id, nome, cognome, indirizzo, citta))
         new_client = cursor.fetchone()
 
         # Commit changes
@@ -77,8 +78,8 @@ def create_client():
         connection_pool.putconn(connection)
 
 # Update operation
-@app.route('/clienti/id', methods=['PUT'])
-def update_client(client_id):
+@app.route('/clienti/<int:clienti_id>', methods=['PUT'])
+def update_client(clienti_id):
     connection = connection_pool.getconn()
     try:
         cursor = connection.cursor()
@@ -90,8 +91,8 @@ def update_client(client_id):
         citta = request.json.get('Citta')
 
         # Update data in the 'Clienti' table
-        update_query = "UPDATE Clienti SET Nome = %s, Cognome = %s, Indirizzo = %s, Citta = %s, WHERE id = %s RETURNING *;"
-        cursor.execute(update_query, (nome, cognome, indirizzo, citta, client_id))
+        update_query = "UPDATE Clienti SET Nome = %s, Cognome = %s, Indirizzo = %s, Citta = %s WHERE id = %s RETURNING *;"
+        cursor.execute(update_query, (nome, cognome, indirizzo, citta, clienti_id))
         updated_client = cursor.fetchone()
 
         # Commit changes
@@ -109,15 +110,15 @@ def update_client(client_id):
         connection_pool.putconn(connection)
 
 # Delete operation
-@app.route('/clienti/id', methods=['DELETE'])
-def delete_client(client_id):
+@app.route('/clienti/<int:clienti_id>', methods=['DELETE'])
+def delete_client(clienti_id):
     connection = connection_pool.getconn()
     try:
         cursor = connection.cursor()
 
         # Delete data from the 'Clienti' table
         delete_query = "DELETE FROM Clienti WHERE id = %s RETURNING *;"
-        cursor.execute(delete_query, (client_id,))
+        cursor.execute(delete_query, (clienti_id,))
         deleted_client = cursor.fetchone()
 
         # Commit changes

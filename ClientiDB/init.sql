@@ -12,6 +12,6 @@ CREATE TABLE IF NOT EXISTS Clienti (
 
 -- Insert data into the "Clienti" table
 INSERT INTO Clienti (ID, Nome, Cognome, Indirizzo, Citta) VALUES
-    ('John', 'Doe', '123 Main St', 'City1'),
-    ('Jane', 'Smith', '456 Oak St', 'City2'),
-    ('Bob', 'Johnson', '789 Maple St', 'City3');
+    ('1', 'John', 'Doe', '123 Main St', 'City1'),
+    ('2', 'Jane', 'Smith', '456 Oak St', 'City2'),
+    ('3', 'Bob', 'Johnson', '789 Maple St', 'City3');
