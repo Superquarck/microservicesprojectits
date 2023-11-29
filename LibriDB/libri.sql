@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS Libri (
 );
 
 -- Insert data into the "Libri" table
-INSERT INTO Libri (ID, Titolo, Editore, Genere, Autore) VALUES
-    ('1', 'La via del massacro', 'Mondadori', 'Thriller', 'Io'),
-    ('2', 'Tre uomini e una gamba', 'Feltrinelli', 'Horror', 'Tu'),
-    ('3', 'Dio', 'Mondadori', 'Horror', 'Loro');
+INSERT INTO Libri (Titolo, Editore, Genere, Autore) VALUES
+    ('La via del massacro', 'Mondadori', 'Thriller', 'Io'),
+    ('Tre uomini e una gamba', 'Feltrinelli', 'Horror', 'Tu'),
+    ('Dio', 'Mondadori', 'Horror', 'Loro');
