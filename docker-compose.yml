@@ -31,8 +31,10 @@ services:
       POSTGRES_DB: LibriDB
       POSTGRES_USER: fede
       POSTGRES_PASSWORD: mypassword
+    expose:
+      - 5433
     ports:
-      - "5431:5432"
+      - 5433
     networks:
       - mynetwork
     container_name: "libridata"
