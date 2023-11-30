@@ -30,7 +30,7 @@ format="%(asctime)s - %(levelname)s - %(message)s")
 logging.info("Connessione al Database dei Libri, riuscita con successo!")
 
 # API endpoint to retrieve data from the 'Libri' table
-@app.route('/libri', methods=['GET'])
+@app.route('/Libri', methods=['GET'])
 def get_books():
     connection = connection_pool.getconn()
     try:
@@ -46,7 +46,7 @@ def get_books():
         connection.commit()
 
         # Convert the data to JSON and return it
-        return jsonify({'libri': data})
+        return jsonify({'Libri': data})
 
     except Exception as e:
         return jsonify({'error': str(e)})
@@ -55,7 +55,7 @@ def get_books():
         # Always return the connection to the pool
         connection_pool.putconn(connection)
 
-@app.route('/libri', methods=['POST'])
+@app.route('/Libri', methods=['POST'])
 def create_books():
     connection = connection_pool.getconn()
     try:
@@ -78,7 +78,7 @@ def create_books():
 
         # Close the cursor (will return the connection to the pool) and return the new client data
         cursor.close()
-        return jsonify({'libri': new_book}), 201
+        return jsonify({'Libri': new_book}), 201
 
     except Exception as e:
         return jsonify({'error': str(e)})
@@ -88,7 +88,7 @@ def create_books():
         connection_pool.putconn(connection)
 
 # Update operation
-@app.route('/libri/<int:libri_id>', methods=['PUT'])
+@app.route('/Libri/<int:libri_id>', methods=['PUT'])
 def update_books(libri_id):
     connection = connection_pool.getconn()
     try:
@@ -110,7 +110,7 @@ def update_books(libri_id):
 
         # Close the cursor (will return the connection to the pool) and return the updated client data
         cursor.close()
-        return jsonify({'libri': update_book})
+        return jsonify({'Libri': update_book})
 
     except Exception as e:
         return jsonify({'error': str(e)})
@@ -120,14 +120,14 @@ def update_books(libri_id):
         connection_pool.putconn(connection)
 
 # Delete operation
-@app.route('/clienti/<int:libri_id>', methods=['DELETE'])
+@app.route('/Libri/<int:libri_id>', methods=['DELETE'])
 def delete_books(libri_id):
     connection = connection_pool.getconn()
     try:
         cursor = connection.cursor()
 
         # Delete data from the 'Clienti' table
-        delete_query = "DELETE FROM Clienti WHERE id_libri = %s RETURNING *;"
+        delete_query = "DELETE FROM Libri WHERE id_libri = %s RETURNING *;"
         cursor.execute(delete_query, (libri_id,))
         deleted_book = cursor.fetchone()
 
@@ -136,7 +136,7 @@ def delete_books(libri_id):
 
         # Close the cursor (will return the connection to the pool) and return the deleted client data
         cursor.close()
-        return jsonify({'libri': deleted_book})
+        return jsonify({'Libri': deleted_book})
 
     except Exception as e:
         return jsonify({'error': str(e)})

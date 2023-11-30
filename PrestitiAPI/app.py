@@ -30,7 +30,7 @@ format="%(asctime)s - %(levelname)s - %(message)s")
 logging.info("Connessione al Database dei Prestiti, riuscita con successo!")
 
 # API endpoint to retrieve data from the 'Prestiti' table
-@app.route('/prestiti', methods=['GET'])
+@app.route('/Prestiti', methods=['GET'])
 def get_prestiti():
     connection = connection_pool.getconn()
     try:
@@ -46,7 +46,7 @@ def get_prestiti():
         connection.commit()
 
         # Convert the data to JSON and return it
-        return jsonify({'prestiti': data})
+        return jsonify({'Prestiti': data})
 
     except Exception as e:
         return jsonify({'error': str(e)})
@@ -55,7 +55,7 @@ def get_prestiti():
         # Always return the connection to the pool
         connection_pool.putconn(connection)
 
-@app.route('/prestiti', methods=['POST'])
+@app.route('/Prestiti', methods=['POST'])
 def create_prestiti():
     connection = connection_pool.getconn()
     try:
@@ -75,7 +75,7 @@ def create_prestiti():
 
         # Close the cursor (will return the connection to the pool) and return the new client data
         cursor.close()
-        return jsonify({'prestiti': new_prestito}), 201
+        return jsonify({'Prestiti': new_prestito}), 201
 
     except Exception as e:
         return jsonify({'error': str(e)})
@@ -85,7 +85,7 @@ def create_prestiti():
         connection_pool.putconn(connection)
 
 # Update operation
-@app.route('/prestiti/<int:prestiti_id>', methods=['PUT'])
+@app.route('/Prestiti/<int:prestiti_id>', methods=['PUT'])
 def update_prestito(prestiti_id):
     connection = connection_pool.getconn()
     try:
@@ -105,7 +105,7 @@ def update_prestito(prestiti_id):
 
         # Close the cursor (will return the connection to the pool) and return the updated client data
         cursor.close()
-        return jsonify({'prestiti': update_prestito})
+        return jsonify({'Prestiti': update_prestito})
 
     except Exception as e:
         return jsonify({'error': str(e)})
@@ -115,7 +115,7 @@ def update_prestito(prestiti_id):
         connection_pool.putconn(connection)
 
 # Delete operation
-@app.route('/prestiti/<int:prestiti_id>', methods=['DELETE'])
+@app.route('/Prestiti/<int:prestiti_id>', methods=['DELETE'])
 def delete_prestito(prestiti_id):
     connection = connection_pool.getconn()
     try:
@@ -131,7 +131,7 @@ def delete_prestito(prestiti_id):
 
         # Close the cursor (will return the connection to the pool) and return the deleted client data
         cursor.close()
-        return jsonify({'prestiti': deleted_prestito})
+        return jsonify({'Prestiti': deleted_prestito})
 
     except Exception as e:
         return jsonify({'error': str(e)})
