@@ -14,4 +14,7 @@ CREATE TABLE IF NOT EXISTS Libri (
 INSERT INTO Libri (Titolo, Editore, Genere, Autore) VALUES
     ('La via del massacro', 'Mondadori', 'Thriller', 'Io'),
     ('Tre uomini e una gamba', 'Feltrinelli', 'Horror', 'Tu'),
-    ('Dio', 'Mondadori', 'Horror', 'Loro');
+    ('Dio', 'Mondadori', 'Horror', 'Loro'),
+    ('Il segreto del successo', 'Rizzoli', 'Mystery', 'Noi'),
+    ('Il mistero della mente', 'Einaudi', 'Psychological Thriller', 'Voi'),
+    ('L ombra della verità', 'Garzanti', 'Suspense', 'Essi');
