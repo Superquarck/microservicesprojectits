@@ -1,4 +1,4 @@
--- Connect to the existing database (replace "UserDB" with your actual database name)
+-- Connect to the existing database 
 \c "PrestitiDB";
 
 -- Create the "Prestiti" table

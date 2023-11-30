@@ -12,8 +12,6 @@ services:
     networks:
       - mynetwork
     container_name: "clientidata"
-    volumes:
-      - ./data/ClientiDB:/var/lib/postgresql/data
 
   apiclienti:
     build: .\ClientiAPI
@@ -35,8 +33,6 @@ services:
     networks:
       - mynetwork
     container_name: "libridata"
-    volumes:
-      - ./data/LibriDB:/var/lib/postgresql/data
 
   apilibri:
     build: .\LibriAPI
@@ -58,8 +54,6 @@ services:
     networks:
       - mynetwork
     container_name: "prestitidata"
-    volumes:
-      - ./data/PrestitiDB:/var/lib/postgresql/data
 
   apiprestiti:
     build: .\PrestitiAPI
