@@ -3,7 +3,7 @@ import json
 import unittest
 from flask import Flask
 
-class TestApiLibri(unittest.TestCase):
+class TestApiClienti(unittest.TestCase):
     url = ("http://127.0.0.1:5000/clienti")
 
     def test_get_all_clienti(self):

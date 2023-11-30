@@ -3,7 +3,7 @@ import json
 import unittest
 from flask import Flask
 
-class TestApiLibri(unittest.TestCase):
+class TestApiPrestiti(unittest.TestCase):
     url = ("http://127.0.0.1:4998/prestiti")
 
     def test_get_all_prestiti(self):
