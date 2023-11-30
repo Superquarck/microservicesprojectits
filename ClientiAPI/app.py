@@ -24,7 +24,7 @@ connection_pool = psycopg2.pool.SimpleConnectionPool(
 
 #configurazione iniziale del logging
 logging.basicConfig(level=logging.INFO,
-filename="Clienti.log",
+filename="Utenti.log",
 filemode="w",
 format="%(asctime)s - %(levelname)s - %(message)s")
 
@@ -151,4 +151,4 @@ def delete_clienti(clienti_id):
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port=5000)
 
-logging.warning("Run dell'applicazione Clienti")
+logging.warning("Run dell'applicazione CLienti")

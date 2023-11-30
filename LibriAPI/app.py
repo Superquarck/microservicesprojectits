@@ -62,15 +62,15 @@ def create_books():
         cursor = connection.cursor()
 
         # Extract data from the request
-        id = request.json.get('ID')
+        id_libri = request.json.get('ID_libri')
         titolo = request.json.get('Titolo')
         editore = request.json.get('Editore')
         genere = request.json.get('Genere')
         autore = request.json.get('Autore')
 
         # Insert data into the 'Libri' table
-        insert_query = "INSERT INTO Libri (ID, Titolo, Editore, Genere, Autore) VALUES (%s, %s, %s, %s, %s) RETURNING *;"
-        cursor.execute(insert_query, (id, titolo, editore, genere, autore))
+        insert_query = "INSERT INTO Libri (ID_libri, Titolo, Editore, Genere, Autore) VALUES (%s, %s, %s, %s, %s) RETURNING *;"
+        cursor.execute(insert_query, (id_libri, titolo, editore, genere, autore))
         new_book = cursor.fetchone()
 
         # Commit changes
@@ -110,7 +110,7 @@ def update_books(libri_id):
 
         # Close the cursor (will return the connection to the pool) and return the updated client data
         cursor.close()
-        return jsonify({'clienti': update_book})
+        return jsonify({'libri': update_book})
 
     except Exception as e:
         return jsonify({'error': str(e)})
@@ -127,7 +127,7 @@ def delete_books(libri_id):
         cursor = connection.cursor()
 
         # Delete data from the 'Clienti' table
-        delete_query = "DELETE FROM Clienti WHERE id = %s RETURNING *;"
+        delete_query = "DELETE FROM Clienti WHERE id_libri = %s RETURNING *;"
         cursor.execute(delete_query, (libri_id,))
         deleted_book = cursor.fetchone()
 
@@ -136,7 +136,7 @@ def delete_books(libri_id):
 
         # Close the cursor (will return the connection to the pool) and return the deleted client data
         cursor.close()
-        return jsonify({'clienti': deleted_book})
+        return jsonify({'libri': deleted_book})
 
     except Exception as e:
         return jsonify({'error': str(e)})
