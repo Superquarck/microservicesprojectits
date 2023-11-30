@@ -20,6 +20,7 @@ services:
     ports:
       - "5000:5000"
     container_name: "apiclienti"
+    image: Superquarck/microservicesprojectsits:apiclienti
     depends_on: 
       - clientidata
     networks:
@@ -42,6 +43,7 @@ services:
     ports:
       - "4999:4999"
     container_name: "apilibri"
+    image: Superquarck/microservicesprojectsits:apilibri
     depends_on: 
       - libridata
     networks:
@@ -64,6 +66,7 @@ services:
     ports:
       - "4998:4998"
     container_name: "apiprestiti"
+    image: Superquarck/microservicesprojectsits:apiprestiti
     depends_on: 
       - prestitidata
     networks:
